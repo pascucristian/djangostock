@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
+{% if api %}
+    {% if api == "Error..." %}
+        Simbol gresit, va rog reincercati...
+    {% else %}
+
+        <h1>{{ api.data.name }}</h1><br/>
+        {# -----nu se afisaza ------ #}
+        {# Open : {{ api.data.eod.0.open }} #}
+        {# High : {{ api.data.eod.0.high }} #}
+        {# Low : {{ api.data.eod.0.low }} #}
+        {# Close : {{ api.data.eod.0.close }} #} 
+        {# Volume : {{ api.data.eod.0.volume }} #}
+        {# Data : {{ api.data.eod.0.date }} #}
+        {# Simbol : {{ api.data.symbol }} #}
+        {# Market : {{ api.data.stock_exchange.name }} #}
+
+
+        {% for key, value in api.data.eod.0.items %}
+            {{ key }}:{{ value }}<br/>
+        {% endfor %}
+    
+    {% endif %}
+{% endif %}
+
+
+
+
+{% endblock %}
